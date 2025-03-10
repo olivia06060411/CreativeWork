@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+	
+  <title>Singapore Pioneers Knowledge Graph & Social Network</title>
+
+  <!-- script src="lib/neo4j-web.min.js"></script -->
+  <script src="lib/cytoscape.min.js"></script>
+  <script src="lib/cola.min.js"></script>
+  <script src="lib/cytoscape-cola.js"></script>
+  <script src="lib/layout-base.js"></script>
+  <script src="lib/cose-base.js"></script>
+  <script src="lib/cytoscape-fcose.js"></script>
+  <script src="lib/weaver.min.js"></script>
+  <script src="lib/cytoscape-spread.js"></script>
+  <script src="lib/SP.get.api.js"></script>
+  <!-- script src="lib/SP.post.api.js"></script -->
+  
+</head>
+
+<body style='font-family:Arial, Helvetica, sans-serif;'>
+
+<!-- HEADER - CURRENTLY NOT USED. 
+  <header style="border-bottom: 1px solid purple; min-height: 50px;">
+      <h1 style='text-shadow: 1px 1px hsl(0, 100%, 80%); color: hsl(336, 100%, 30%)'>&nbsp;&nbsp;
+	  <button id='openLeftpanel' class='openLeftpanel'>&#9776;</button>&nbsp;&nbsp;
+	  SingPioneers - <span id='header' style='color: hsl(240, 100%, 30%)'>Knowledge Graph</span>
+	  </h1>
+  </header>
+-->
+
+  <div id='main' class='flex-container' >
+
+    <div id='main-leftmenu' class='main-leftmenu'>
+		
+		<h2 style='color: #1976d2;'>Browse by</h2>
+		
+		<small>Click on a collapsible menu below</small>
+
+        <button class="accordion">CreativeWork</button>
+        <div class="panel">	
+		<br/>
+		<div><b><label for="CreativeWork">Step 1. Select CreativeWork</label></b>
+		<select id="CreativeWork" name="CreativeWork">
+		<option value='Abisheganaden_P_2005-Citation'>Abisheganaden_P_2005-Citation</option>
+<option value='Air_Mata_di_KL'>Air_Mata_di_KL</option>
+<option value='Antara Senyum dan Tangis'>Antara Senyum dan Tangis</option>
+<option value='Anuar_H_1968-Citation'>Anuar_H_1968-Citation</option>
+<option value='Anuar_H_1985-Citation'>Anuar_H_1985-Citation</option>
+<option value='Anuar_H_1987-Citation'>Anuar_H_1987-Citation</option>
+<option value='Anuar_H_1998-Citation'>Anuar_H_1998-Citation</option>
+<option value='Azizah'>Azizah</option>
+<option value='Bakti'>Bakti</option>
+<option value='Billy_Graham_Crusade_anthem'>Billy_Graham_Crusade_anthem</option>
+<option value='Bujang_Lapok'>Bujang_Lapok</option>
+<option value='Cempaka_Biru_Song'>Cempaka_Biru_Song</option>
+<option value='Chinta'>Chinta</option>
+<option value='Desert_Victory'>Desert_Victory</option>
+<option value='Donald_Loke_W_T_1958-Citation'>Donald_Loke_W_T_1958-Citation</option>
+<option value='Geylang_Eng_Sch_Anthem'>Geylang_Eng_Sch_Anthem</option>
+<option value='Geylang_Eng_Sch_song'>Geylang_Eng_Sch_song</option>
+<option value='Guan_KC_1989-Citation'>Guan_KC_1989-Citation</option>
+<option value='Haydn_Surprise_Symphony'>Haydn_Surprise_Symphony</option>
+<option value='Hujan_Panas'>Hujan_Panas</option>
+<option value='Ikan_Tembakul-Song'>Ikan_Tembakul-Song</option>
+<option value='Intan_Diamond_(1971)'>Intan_Diamond_(1971)</option>
+<option value='Juwita'>Juwita</option>
+<option value='Lai_C_K_2015-Citation'>Lai_C_K_2015-Citation</option>
+<option value='Laksamana_Do_Re_Mi'>Laksamana_Do_Re_Mi</option>
+<option value='Lee_K_L_1988-Citation'>Lee_K_L_1988-Citation</option>
+<option value='Lee_K_L_1991_and_1984-Citation'>Lee_K_L_1991_and_1984-Citation</option>
+<option value='Loke_W_T_1957-Citation'>Loke_W_T_1957-Citation</option>
+<option value='Majulah_Singapura'>Majulah_Singapura</option>
+<option value='Muddle_writing_calligraphy'>Muddle_writing_calligraphy</option>
+<option value='Painting_of_gibbons'>Painting_of_gibbons</option>
+<option value='Panggilan_Pulau '>Panggilan_Pulau </option>
+<option value='Penarek_Becha_Trishaw_Puller'>Penarek_Becha_Trishaw_Puller</option>
+<option value='Rantau_Selamat_(1972)'>Rantau_Selamat_(1972)</option>
+<option value='Saputangan'>Saputangan</option>
+<option value='Sayang_Sayang'>Sayang_Sayang</option>
+<option value='Setangkai_Melati'>Setangkai_Melati</option>
+<option value='Takdir_Ilahi '>Takdir_Ilahi </option>
+<option value='Woon_ T_2021-Citation'>Woon_ T_2021-Citation</option>
+		
+        </select></div>
+        <p/>
+
+		<b>Step 2. Select types of relationship</b><br/>
+		<input type='checkbox' id='achievement' name='achievement' value='achievement'><label for='achievement'>whose achievement</label><br>
+		<input type='checkbox' id='creator_of' name='creator_of' value='creator_of'><label for='creator_of'>author</label><br>
+		<input type='checkbox' id='movie' name='movie' value='movie'><label for='movie'>who acted in</label><br>
+		<input type='checkbox' id='music' name='music' value='music'><label for='music'>whose music</label><br>
+		<input type='checkbox' id='performance' name='performance' value='performance'><label for='performance'>who performed</label><br>
+
+		<p/>
+        <b>Step 3. Click</b> <button id="checkbox_submit">Submit</button><p/>
+		</div>
+		
+        <button class="accordion">Relationship: CreativeWork & People</button>
+        <div class="panel">
+		<p> 	
+        <button id="achievement_relation">achievement</button>
+        <button id="creator_of_relation">creator</button>
+        <button id="movie_relation">movie</button>
+        <button id="music_relation">music</button>
+        <button id="performance_relation">performance</button>		
+		</p>
+        </div>
+
+        <button class="accordion">Entities</button>
+			<div class="panel">
+        <p>
+        <button id="entity_school">Schools</button><br/>
+		<button id="entity_business">Business entities</button><br/>	
+		<button id="entity_culture">Cultural/artistic entities</button><br/>	
+		<button id="entity_sports">Sports/Hobbies</button><br/>	
+		<button id="entity_community">Community/Social/Political</button><br/>				
+        <button id="entity_org">All organizations</button><br/>
+		</p>
+		<p>
+        <button id="entity_movie">Movies</button><br/>
+		<button id="entity_music">Music</button><br/>
+        <button id="entity_art">Art/Paintings</button><br/>
+		<button id="entity_creative">All creative works</button><br/>
+        </p>
+		<p>
+        <button id="entity_event">Events</button><br/>
+        <button id="entity_law">Laws</button><br/>
+		<button id="entity_place">Places</button><br/>
+        <button id="entity_building">Buildings</button><br/>
+        <button id="entity_award">Awards/Recognition</button><br/>
+        </p>
+		</div>	
+		
+		
+        <button class="accordion">Special topics</button>
+		<div class="panel">
+        <p>
+        <button id="special_interethnic">Inter-ethnic relations</button><br/>
+        <button id="special_interethnic_table">List in table</button><p/>
+		
+        <button id="special_multi">Multiple links between persons</button><p/>
+		
+		<button id="special_triad">Triadic relation structure</button><br/>
+		<button id="special_triad_table">List in table</button><p/>
+		
+        </p>
+		</div>
+		
+		<button class="accordion">Relationship path</button>
+		<div class="panel">
+		<p/>
+		
+		<b>Entity A: </b><input type='text' id='keywordA' name='keywordA' placeholder='Enter keyword'/>
+		<button id="button-keywordA">Search</button><br/>	
+		<select id='entityA' name='entityA'></select>
+        <p/>
+		
+		<b>Entity B: </b><input type='text' id='keywordB' name='keywordB' placeholder='Enter keyword'/>
+		<button id='button-keywordB'>Search</button><br/>	
+		<select id='entityB' name='entityB'></select>		
+		
+        <p/>		
+        <button id="button-path">Find path from Entity A to B</button><br/>
+        <button id="button-entityA">Display just Entity A</button><br/>
+        <p/>
+		</div>
+		
+        <hr/>
+       
+
+    </div>
+    <div id='main-panel' class='main-panel'>
+	
+	<h2 id="query" style="color: #1976d2; text-shadow: 1px 1px rgba(25, 118, 210, 0.3);">
+  CreativeWork - Knowledge Graph 
+</h2>	
+				
+		<p><b>Click on buttons on the left panel to select types of information to display on the canvas below.</b><br/></p>
+        <p/>  
+
+      <div id='canvasWithMenu' style='display:block; height:800px; width:1150px;'>
+	  <!-- canvasWithMenu size is controlled by Javascript resizeCanvas function -->
+		<!-- menu bar for display canvas -->
+		
+	<div id='canvas-menu' style='min-height:38px; min-width:600px; background-color:#f8f9ff; padding:2px; display:block'>
+  <b>Change graph layout: 
+    <button id="layout-breadthfirst" style="background-color:#e3f2fd;">Tree</button>
+    <button id="layout-concentric" style="background-color:#e3f2fd;">Concentric</button> 
+    <button id="layout-fcose" style="background-color:#e3f2fd;">Force-Cose</button>
+    <button id="layout-cola" style="background-color:#e3f2fd;">Force-Cola (default)</button> 
+    <button id="layout-spread" style="background-color:#e3f2fd;">Spread-out graph</button> 
+    
+    <button id="clear_canvas" style="background-color:#2196f3; color:white;">Clear canvas</button>
+    <button id="zoom-minus" style="background-color:#64b5f6; color:white; border-radius:50%">-</button>
+    <button id="zoom-reset" style="background-color:#2196f3; color:white;">Reset zoom</button>
+    <button id="zoom-plus" style="background-color:#64b5f6; color:white; border-radius:50%">+</button> 
+    <button id="fullscreen" style="background-color:#1976d2; color:white;">Open fullscreen</button>
+  </b><br/>
+		
+	
+		
+		Suggestion: Click on a node or link to display metadata. Double-click to expand the node with neighboring nodes.</div>
+
+        <!-- Canvas to display Cytoscape graph -->
+        <div id="cy" style='height:100%; width:100%; display:block; border-style:solid; border-width:1px; border-color:#64b5f6; background-color:#f8f9ff; box-shadow: rgba(25, 118, 210, 0.1) 5px 5px;);'></div>
+        <p/>
+        
+		<h2 id='query2' style='text-shadow: 1px 1px hsl(0, 100%, 80%);'></h2>
+        <div id='table1'></div>
+		
+
+        <!-- Popup info box to display node and edge attributes -->
+<div id='graph-popup1' class='modal2'>
+  <div class='modal2-content' style="background-color: #f8f9ff; color: #1976d2; box-shadow: rgba(25, 118, 210, 0.1) 0px 5px;">
+    <span id='graph-popup1-close' class='close' style="color: #1976d2">&nbsp; &times;</span>
+    <span id='graph-popup1-pin' class='pin' style='font-size:0.8em; color: #1976d2'>&#128204;</span>
+    
+    <p style='color: #1976d2; font-weight: 500;'><u>Drag</u> this info box to new location.<br/>
+    <u>Double-click</u> in the box to close, or click on X<br/>
+    <u>Click</u> on <span id='graph-popup1-pin2' style='font-size:0.9em; color: #1976d2'>&#128204;</span> to pin box, & resize</p>
+    
+    <hr style="border-color: #e3f2fd;">
+    
+    <div id='graph-popup1-content'></div>
+    
+    <div id='graph-popup1-menu'> 
+      <button id="node-expand" style="background-color: #e3f2fd; color: #1976d2; border: 1px solid #2196f3;">Expand node</button> 
+      <button id="node-remove" style="background-color: #e3f2fd; color: #1976d2; border: 1px solid #2196f3;">Remove node</button>
+    </div>
+  </div>
+</div>
+      </div>
+		     
+    </div>
+  </div>
+
+
+<!-- Side panel -->
+<div id="sidepanel1" class="sidepanel flex-container">
+
+
+  <!-- left border of toolbox -->
+  <div style='text-align:center; width:20px; font-weight:bold; font-family:arial,sans-serif; 
+            background-color: #e3f2fd;  /* 浅蓝色背景 */
+            color: #1976d2;'>           <!-- 品牌蓝色文字 -->
+  <br/> <br/>&#9874;<br/> <br/>T<br/>O<br/>O<br/>L<br/>B<br/>O<br/>X
+</div>
+
+
+  <div style='padding:10px'>
+
+  <!-- No longer used: ! and x to pin and close the panel -->
+  <!-- span id='sidepanel-close' class='close'>&nbsp; &times;</span -->			  
+  <span id='sidepanel-pin2' class='pin' style='font-size:0.8em'>&#128204;</span>
+
+    <small>Click on a collapsible menu below</small>
+
+    <button class='accordion'>Filter</button>
+	
+	
+	<div id='panel-filter' class='panel' style="background-color: #f8f9ff;">
+    
+    <div id='panel-filter-help' style='visibility: hidden; color: #607d8b'></div>
+    
+    <div id='checkboxes-nodeTypes'>
+    <br/><span style='color: #607d8b'>First, display a graph on the canvas by clicking on buttons on the left panel.<br/>
+    Then a list of node types will display here for selection.</span><br/> <br/>
+    </div>
+    
+    <button id="checkbox_clear1" style='visibility: hidden; color: #2196f3; border-color: #64b5f6'>&#9744; Uncheck all</button>
+    <button id="checkbox_reset1" style='visibility: hidden; color: #2196f3; border-color: #64b5f6'>&#9745; Check all</button><br/>
+    <button id="checkbox_submit1" style='visibility: hidden; background-color:#e3f2fd; color: #1976d2; border: 1px solid #2196f3'>Apply filter</button><br/> <br/> 
+    
+    <div id='checkboxes-edgeTypes'></div>
+    
+    <button id="checkbox_clear2" style='visibility: hidden; color: #2196f3; border-color: #64b5f6'>&#9744; Uncheck all</button>
+    <button id="checkbox_reset2" style='visibility: hidden; color: #2196f3; border-color: #64b5f6'>&#9745; Check all</button><br/>
+    <button id="checkbox_submit2" style='visibility: hidden; background-color:#e3f2fd; color: #1976d2; border: 1px solid #2196f3'>Apply filter</button><br/> <br/> 
+</div>
+	
+		
+		
+    <button class="accordion">Other tools</button>
+    <div class="panel">
+      <p>Forthcoming ...</p>
+    </div>
+  </div>
+</div>
+
+
+<style>
+
+button {  
+  border-width: 1px;
+}
+
+
+/* Graph popup/Info box panel */
+.modal2 {
+  display: none;   /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1;      /* Sit on top */
+  right: 3px;
+  top: 20px;
+  width: 320px; 
+  max-height: 650px; 
+  resize: both;
+  overflow: auto;  /* Enable scroll if needed */
+  padding: 10px;
+}
+
+
+.modal2-content {
+  background-color: #f8f9ff;       /* 主背景 - 浅蓝白 */
+  color: #1976d2;                 /* 文字 - 深蓝色 */
+  box-shadow: rgba(25, 118, 210, 0.1) 0px 5px;  /* 柔和蓝阴影 */
+  
+  /* 以下未修改的样式 */
+  text-align: left; 
+  width: 95%;
+  max-height: 610px; 
+  line-height: 1;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: normal;
+  padding: 10px;
+  overflow: auto;
+}
+
+
+
+/* The Close Button */
+.close, .pin {
+  color: #1976d2;        /* 主蓝色 */
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.pin-push {
+  border-style: inset;
+  border-width: 2px;
+  border-color: #e3f2fd;  /* 浅蓝色边框 */
+  background-color: #d0e0f0;  /* 浅蓝色背景 */
+}
+
+.close:hover, .close:focus, .pin:hover, .pin:focus {
+  color: #0d47a1;        /* 深蓝色悬停 */
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+/* Style the buttons that are used to open and close the accordion panel */
+
+.accordion {
+  background-color: #e3f2fd;  /* 浅蓝色背景 */
+  cursor: pointer;
+  padding: 5px;
+  width: 100%;
+  text-align: left;
+  border-style: outset;
+  border-width: 2px;
+  outline: none;
+  transition: 0.4s;
+  color: #1976d2;            /* 主蓝色文字 */
+  font-size: 1em; 
+  font-weight: bold; 
+  text-shadow: 1px 1px rgba(25, 118, 210, 0.1);  /* 蓝色系阴影 */
+  box-shadow: rgba(25, 118, 210, 0.2) 2px 2px;    /* 柔和蓝阴影 */
+}
+
+/* 添加悬停效果保持交互 */
+.accordion:hover {
+  background-color: #d0e0f0;  /* 悬停时加深蓝 */
+  color: #0d47a1;             /* 深蓝色文字 */
+}
+
+
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+/* 修改后的配色方案（保持蓝白主题） */
+.active, .accordion:hover {
+  background-color: #d0e0f0;  /* 悬停浅蓝色 */
+}
+
+.panel {
+  background-color: #f8f9ff;   /* 浅蓝白背景 */
+  /* 其他未修改属性 */
+  padding: 0 0px;
+  max-height: 0;
+  overflow: auto;
+  transition: max-height 0.2s ease-out;
+}
+
+.accordion:after {
+  color: #1976d2;  /* 主蓝色图标 */
+  /* 其他未修改属性 */
+  content: '\02795';
+  font-size: 10px;
+  float: right;
+  margin-left: 0px;
+}
+
+.active:after {
+  color: #1976d2;  /* 保持激活状态图标颜色一致 */
+  content: "\2796";
+}
+
+
+
+
+/*** Styles for formatting <div> tags ***/
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.main-leftmenu {
+  flex: 0 0 180px;
+  width: 180px;
+  min-height: 100vh;
+  height: 100%;
+  text-align: left; 
+  padding: 10px;
+  background-color: hsl(225, 35%, 85%); 
+}
+
+.main-panel {
+  flex: 50 0 600px;  /* no longer has much effect, as display canvas size is now controlled by javascript */
+  min-width: 600px;  /* no longer has much effect */
+  height: 100%; 
+  text-align: left;
+  padding: 20px;
+  background-color: #f8f9ff;
+}  
+
+
+/* The side navigation menu */
+.sidepanel {
+  /* display: block; */
+  position: fixed; 
+  z-index: 2; /* Sit on top */
+  height: 400px; 
+  width: 270px;
+  top: 180px; 
+  right: -255px;
+  resize: vertical;
+  overflow: auto;  /* Enable scroll if needed */
+  background-color: #f8f9ff;
+  color: #1976d2;
+  text-align: left; 
+  line-height: 1;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: normal;
+  padding: 0px;
+  transition-delay: 0s;
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.sidepanel:hover {
+  right: 0px;
+}
+
+.sidepanel-pin, .sidepanel-pin2 {   /* this class is toggled to open sidepanel using script */
+  right: 0px;
+}
+
+
+.transition-delay { transition-delay: 0.5s; }  /* this class is toggled on to delay closing the side panel, using script */
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidepanel {padding: 5px;}
+}
+
+</style>
+
+</body>
+
+</html>
